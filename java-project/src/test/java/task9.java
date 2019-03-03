@@ -46,8 +46,9 @@ public class task9 {
             int countryZonesCount = countryZones.size();
             ArrayList<String> countryZonesList = new ArrayList<String>();
             for (int k = 0; k < countryZonesCount; k++) {
-                String zone = driver.findElement(By.xpath("//*[@type='hidden' and contains(@name, '[name]')]")).getText();
-                actualCountryList.add(zone);
+                int zoneNum = k + 1;
+                String zone = driver.findElement(By.xpath("(//*[@type='hidden' and contains(@name, '[name]')])[" + zoneNum + "]")).getAttribute("value");
+                countryZonesList.add(zone);
             }
 
             Assert.assertTrue(String.format("Зоны внутри страны отсортированы не в алфавитном порядке"), Ordering.natural().isOrdered(countryZonesList));
